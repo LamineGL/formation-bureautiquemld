@@ -1,0 +1,748 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Formation en Informatique et Bureautique - Inscription en ligne sécurisée">
+    <title>Inscription Formation Bureautique & Informatique</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎓</text></svg>">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #2E75B6;
+            --primary-dark: #1a4d7a;
+            --secondary: #667eea;
+            --accent: #764ba2;
+            --success: #10b981;
+            --danger: #ef4444;
+            --warning: #f59e0b;
+            --dark: #1f2937;
+            --light: #6b7280;
+            --bg: #f9fafb;
+            --border: #e5e7eb;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: linear-gradient(135deg, var(--secondary) 0%, var(--accent) 100%);
+            min-height: 100vh;
+            padding: 20px;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 24px;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+            overflow: hidden;
+            animation: fadeInUp 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .header {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            color: white;
+            padding: 50px 40px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 1px, transparent 1px);
+            background-size: 50px 50px;
+            animation: movePattern 20s linear infinite;
+        }
+
+        @keyframes movePattern {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(50px, 50px); }
+        }
+
+        .header-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .header h1 {
+            font-size: 38px;
+            margin-bottom: 12px;
+            font-weight: 800;
+            text-shadow: 2px 2px 8px rgba(0,0,0,0.2);
+            letter-spacing: -0.5px;
+        }
+
+        .header .emoji {
+            font-size: 56px;
+            display: block;
+            margin-bottom: 20px;
+            animation: bounce 2s ease-in-out infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .header p {
+            font-size: 18px;
+            opacity: 0.95;
+            font-weight: 300;
+        }
+
+        .info-banner {
+            background: linear-gradient(135deg, #e0f2fe 0%, #bfdbfe 100%);
+            padding: 35px 40px;
+            border-bottom: 5px solid var(--primary);
+        }
+
+        .info-banner h3 {
+            color: var(--primary);
+            margin-bottom: 24px;
+            font-size: 24px;
+            font-weight: 700;
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+        }
+
+        .info-item {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            background: white;
+            padding: 20px;
+            border-radius: 16px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        }
+
+        .info-item:hover {
+            transform: translateY(-5px) scale(1.02);
+            box-shadow: 0 8px 24px rgba(46, 117, 182, 0.2);
+        }
+
+        .info-item .icon {
+            width: 56px;
+            height: 56px;
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: white;
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 26px;
+            flex-shrink: 0;
+            box-shadow: 0 6px 16px rgba(46, 117, 182, 0.4);
+        }
+
+        .info-item .text {
+            font-size: 14px;
+            color: var(--light);
+        }
+
+        .info-item .text strong {
+            display: block;
+            color: var(--primary);
+            font-size: 22px;
+            font-weight: 800;
+            margin-bottom: 4px;
+        }
+
+        .form-content {
+            padding: 50px 40px;
+        }
+
+        .alert {
+            padding: 20px 24px;
+            border-radius: 12px;
+            margin-bottom: 30px;
+            display: none;
+            animation: slideDown 0.4s ease-out;
+            font-weight: 500;
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .alert-success {
+            background: #d1fae5;
+            color: #065f46;
+            border: 2px solid var(--success);
+        }
+
+        .alert-error {
+            background: #fee2e2;
+            color: #991b1b;
+            border: 2px solid var(--danger);
+        }
+
+        .form-section {
+            margin-bottom: 45px;
+        }
+
+        .form-section h2 {
+            color: var(--primary);
+            font-size: 26px;
+            margin-bottom: 28px;
+            padding-bottom: 14px;
+            border-bottom: 3px solid var(--border);
+            position: relative;
+            font-weight: 700;
+        }
+
+        .form-section h2::after {
+            content: '';
+            position: absolute;
+            bottom: -3px;
+            left: 0;
+            width: 80px;
+            height: 3px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            border-radius: 3px;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 24px;
+            margin-bottom: 24px;
+        }
+
+        .form-group {
+            margin-bottom: 24px;
+        }
+
+        .form-group label {
+            display: block;
+            color: var(--dark);
+            font-weight: 600;
+            margin-bottom: 10px;
+            font-size: 15px;
+        }
+
+        .form-group label .required {
+            color: var(--danger);
+            margin-left: 4px;
+            font-size: 16px;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 15px 18px;
+            border: 2px solid var(--border);
+            border-radius: 12px;
+            font-size: 15px;
+            transition: all 0.3s ease;
+            font-family: inherit;
+            background-color: white;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 5px rgba(46, 117, 182, 0.12);
+            transform: translateY(-2px);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 130px;
+            line-height: 1.6;
+        }
+
+        .radio-group {
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+
+        .radio-item {
+            flex: 1;
+            min-width: 150px;
+            padding: 16px 20px;
+            border: 2px solid var(--border);
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+        }
+
+        .radio-item:hover {
+            border-color: var(--primary);
+            background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+            transform: translateY(-2px);
+        }
+
+        .radio-item input[type="radio"] {
+            width: 22px;
+            height: 22px;
+            margin-right: 12px;
+            cursor: pointer;
+            accent-color: var(--primary);
+        }
+
+        .radio-item label {
+            margin: 0;
+            cursor: pointer;
+            flex: 1;
+        }
+
+        .consent-box {
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+            padding: 28px;
+            border-radius: 14px;
+            margin-top: 40px;
+            border-left: 6px solid var(--warning);
+        }
+
+        .checkbox-item {
+            display: flex;
+            align-items: flex-start;
+        }
+
+        .checkbox-item input[type="checkbox"] {
+            width: 22px;
+            height: 22px;
+            margin-right: 14px;
+            margin-top: 2px;
+            cursor: pointer;
+            accent-color: var(--primary);
+        }
+
+        .checkbox-item label {
+            margin: 0;
+            cursor: pointer;
+            line-height: 1.7;
+            color: var(--dark);
+        }
+
+        .security-badge {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            color: var(--success);
+            font-size: 14px;
+            margin-top: 24px;
+            padding: 14px;
+            background: #f0fdf4;
+            border-radius: 10px;
+            font-weight: 600;
+        }
+
+        .security-badge svg {
+            width: 22px;
+            height: 22px;
+        }
+
+        .submit-section {
+            text-align: center;
+            margin-top: 50px;
+            padding-top: 40px;
+            border-top: 3px solid var(--border);
+        }
+
+        .submit-btn {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            color: white;
+            padding: 20px 80px;
+            border: none;
+            border-radius: 50px;
+            font-size: 18px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            box-shadow: 0 12px 28px rgba(46, 117, 182, 0.5);
+            text-transform: uppercase;
+            letter-spacing: 1.2px;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-4px) scale(1.02);
+            box-shadow: 0 18px 40px rgba(46, 117, 182, 0.6);
+        }
+
+        .submit-btn:active {
+            transform: translateY(-2px) scale(1);
+        }
+
+        .submit-btn:disabled {
+            opacity: 0.7;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .footer-note {
+            text-align: center;
+            color: var(--light);
+            font-size: 14px;
+            margin-top: 28px;
+            line-height: 1.8;
+        }
+
+        .spinner {
+            display: inline-block;
+            width: 18px;
+            height: 18px;
+            border: 3px solid rgba(255,255,255,.4);
+            border-radius: 50%;
+            border-top-color: white;
+            animation: spin 0.8s linear infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        @media (max-width: 768px) {
+            body { padding: 10px; }
+            .header { padding: 40px 24px; }
+            .header h1 { font-size: 28px; }
+            .header .emoji { font-size: 48px; }
+            .info-banner { padding: 24px 20px; }
+            .form-content { padding: 30px 20px; }
+            .form-row { grid-template-columns: 1fr; }
+            .radio-group { flex-direction: column; }
+            .submit-btn { width: 100%; padding: 18px 40px; }
+        }
+
+        .form-group input.invalid,
+        .form-group select.invalid,
+        .form-group textarea.invalid {
+            border-color: var(--danger);
+            animation: shake 0.5s;
+        }
+
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-10px); }
+            75% { transform: translateX(10px); }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="header-content">
+                <span class="emoji">🎓</span>
+                <h1>FORMULAIRE D'INSCRIPTION</h1>
+                <p>Formation en Initiation Informatique & Bureautique</p>
+            </div>
+        </div>
+
+        <div class="info-banner">
+            <h3>📋 Informations sur la Formation</h3>
+            <div class="info-grid">
+                <div class="info-item">
+                    <div class="icon">⏱️</div>
+                    <div class="text">
+                        <strong>3-6 mois</strong>
+                        Durée flexible
+                    </div>
+                </div>
+                <div class="info-item">
+                    <div class="icon">📅</div>
+                    <div class="text">
+                        <strong>2x/semaine</strong>
+                        Sessions de 3h
+                    </div>
+                </div>
+                <div class="info-item">
+                    <div class="icon">💰</div>
+                    <div class="text">
+                        <strong>25 000 FCFA</strong>
+                        Inscription
+                    </div>
+                </div>
+                <div class="info-item">
+                    <div class="icon">📊</div>
+                    <div class="text">
+                        <strong>50 000 FCFA</strong>
+                        Mensualité
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-content">
+            <div id="successAlert" class="alert alert-success">
+                <strong>✅ Inscription envoyée avec succès !</strong><br>
+                Nous vous contacterons par email et WhatsApp sous 48h maximum.
+            </div>
+
+            <div id="errorAlert" class="alert alert-error">
+                <strong>❌ Erreur lors de l'envoi.</strong><br>
+                Veuillez vérifier vos informations et réessayer.
+            </div>
+
+            <form id="inscriptionForm" novalidate>
+                <div class="form-section">
+                    <h2>👤 Informations Personnelles</h2>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="prenom">Prénom <span class="required">*</span></label>
+                            <input type="text" id="prenom" name="prenom" required minlength="2" maxlength="50" placeholder="Votre prénom">
+                        </div>
+                        <div class="form-group">
+                            <label for="nom">Nom <span class="required">*</span></label>
+                            <input type="text" id="nom" name="nom" required minlength="2" maxlength="50" placeholder="Votre nom">
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="email">Email <span class="required">*</span></label>
+                            <input type="email" id="email" name="email" required placeholder="exemple@email.com">
+                        </div>
+                        <div class="form-group">
+                            <label for="telephone">Téléphone <span class="required">*</span></label>
+                            <input type="tel" id="telephone" name="telephone" required pattern="[+0-9\s\-()]{8,20}" placeholder="+221 77 123 45 67">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="adresse">Adresse <span class="required">*</span></label>
+                        <input type="text" id="adresse" name="adresse" required minlength="5" maxlength="200" placeholder="Ville, Quartier">
+                    </div>
+                </div>
+
+                <div class="form-section">
+                    <h2>📊 Niveau</h2>
+                    
+                    <div class="form-group">
+                        <label>Quel est votre niveau actuel en informatique ? <span class="required">*</span></label>
+                        <div class="radio-group">
+                            <div class="radio-item">
+                                <input type="radio" id="niveauDebutant" name="niveau" value="Débutant complet" required>
+                                <label for="niveauDebutant">Débutant complet</label>
+                            </div>
+                            <div class="radio-item">
+                                <input type="radio" id="niveauBase" name="niveau" value="Notions de base">
+                                <label for="niveauBase">Notions de base</label>
+                            </div>
+                            <div class="radio-item">
+                                <input type="radio" id="niveauIntermediaire" name="niveau" value="Intermédiaire">
+                                <label for="niveauIntermediaire">Intermédiaire</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-section">
+                    <h2>💼 Profession / Statut Actuel</h2>
+                    
+                    <div class="form-group">
+                        <label for="profession">Profession ou Statut <span class="required">*</span></label>
+                        <input type="text" id="profession" name="profession" required minlength="3" maxlength="100" placeholder="Ex: Étudiant, Employé, Entrepreneur, Sans emploi...">
+                    </div>
+                </div>
+
+                <div class="form-section">
+                    <h2>💬 Informations Complémentaires</h2>
+                    
+                    <div class="form-group">
+                        <label for="commentaires">Parlez-nous de vos objectifs et attentes</label>
+                        <textarea id="commentaires" name="commentaires" maxlength="1000" placeholder="Pourquoi souhaitez-vous suivre cette formation ? Quels sont vos objectifs professionnels ? Avez-vous des questions particulières ?"></textarea>
+                    </div>
+                </div>
+
+                <div class="form-section">
+                    <h2>📢 Comment avez-vous entendu parler de cette formation ?</h2>
+                    
+                    <div class="form-group">
+                        <label for="source">Source d'information <span class="required">*</span></label>
+                        <select id="source" name="source" required>
+                            <option value="">-- Sélectionnez --</option>
+                            <option value="Réseaux sociaux">Réseaux sociaux (Facebook, Instagram, LinkedIn...)</option>
+                            <option value="Bouche à oreille">Bouche à oreille (Ami, famille, collègue)</option>
+                            <option value="Recherche Internet">Recherche sur Internet (Google, Bing...)</option>
+                            <option value="Affiche ou Flyer">Affiche ou Flyer</option>
+                            <option value="WhatsApp">WhatsApp</option>
+                            <option value="Autre">Autre</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="consent-box">
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="consent" name="consent" required>
+                        <label for="consent">
+                            <span class="required">*</span> J'accepte que mes données personnelles soient utilisées pour le traitement de ma demande d'inscription et je confirme l'exactitude des informations fournies.
+                        </label>
+                    </div>
+                </div>
+
+                <div class="security-badge">
+                    <svg fill="currentColor" viewBox="0 0 20 20">
+                        <path fill-rule="evenodd" d="M2.166 4.999A11.954 11.954 0 0010 1.944 11.954 11.954 0 0017.834 5c.11.65.166 1.32.166 2.001 0 5.225-3.34 9.67-8 11.317C5.34 16.67 2 12.225 2 7c0-.682.057-1.35.166-2.001zm11.541 3.708a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                    </svg>
+                    <span><strong>Connexion sécurisée</strong> - Vos données sont protégées</span>
+                </div>
+
+                <div class="submit-section">
+                    <button type="submit" class="submit-btn" id="submitBtn">
+                        📝 Soumettre ma demande
+                    </button>
+                    <p class="footer-note">
+                        Les champs marqués d'un <span style="color: var(--danger);">*</span> sont obligatoires.<br>
+                        Vous recevrez une confirmation sous 48h maximum.
+                    </p>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        const WEB3FORMS_KEY = '0986b451-1956-4341-85e6-3f7d2d8256aa';
+        const WHATSAPP_NUMBER = '221771104745';
+
+        const form = document.getElementById('inscriptionForm');
+        const submitBtn = document.getElementById('submitBtn');
+        const successAlert = document.getElementById('successAlert');
+        const errorAlert = document.getElementById('errorAlert');
+
+        const inputs = form.querySelectorAll('input, select, textarea');
+        inputs.forEach(input => {
+            input.addEventListener('blur', function() {
+                if (!this.checkValidity()) {
+                    this.classList.add('invalid');
+                } else {
+                    this.classList.remove('invalid');
+                }
+            });
+
+            input.addEventListener('input', function() {
+                this.classList.remove('invalid');
+            });
+        });
+
+        form.addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            successAlert.style.display = 'none';
+            errorAlert.style.display = 'none';
+            
+            if (!form.checkValidity()) {
+                form.reportValidity();
+                return;
+            }
+            
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = '<span class="spinner"></span> Envoi en cours...';
+            
+            const formData = new FormData(form);
+            const data = {
+                access_key: WEB3FORMS_KEY,
+                subject: `Nouvelle inscription: ${formData.get('prenom')} ${formData.get('nom')}`,
+                from_name: 'Formation Bureautique',
+                replyto: formData.get('email')
+            };
+            
+            for (let [key, value] of formData.entries()) {
+                if (key !== 'consent') {
+                    data[key] = value;
+                }
+            }
+
+            const whatsappMsg = `🎓 NOUVELLE INSCRIPTION
+
+👤 ${data.prenom} ${data.nom}
+📧 ${data.email}
+📱 ${data.telephone}
+📍 ${data.adresse}
+
+📊 Niveau: ${data.niveau}
+💼 Profession: ${data.profession}
+
+💬 Objectifs:
+${data.commentaires || 'Non renseigné'}
+
+📢 Source: ${data.source}
+
+📅 ${new Date().toLocaleString('fr-FR')}`;
+
+            try {
+                const response = await fetch('https://api.web3forms.com/submit', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Accept': 'application/json'
+                    },
+                    body: JSON.stringify(data)
+                });
+
+                const result = await response.json();
+
+                if (result.success) {
+                    successAlert.style.display = 'block';
+                    form.reset();
+                    window.scrollTo({top: 0, behavior: 'smooth'});
+                    
+                    setTimeout(() => {
+                        const whatsappUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(whatsappMsg)}`;
+                        window.open(whatsappUrl, '_blank');
+                    }, 2000);
+                    
+                } else {
+                    throw new Error('Erreur Web3Forms');
+                }
+                
+            } catch (error) {
+                console.error('Erreur:', error);
+                errorAlert.style.display = 'block';
+                window.scrollTo({top: 0, behavior: 'smooth'});
+            } finally {
+                submitBtn.disabled = false;
+                submitBtn.innerHTML = '📝 Soumettre ma demande';
+            }
+        });
+
+        const honeypot = document.createElement('input');
+        honeypot.type = 'text';
+        honeypot.name = 'botcheck';
+        honeypot.style.display = 'none';
+        form.appendChild(honeypot);
+    </script>
+</body>
+</html>
